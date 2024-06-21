@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Recommendation Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            position: relative;
+            overflow: hidden;
+            background: #BCBBB8;
+        }
+        body::before {
+            content: "";
+            background: url('/static/back.jpg') no-repeat center center fixed;
+            background-size: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.5;
+            z-index: -1;
+        }
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(173, 216, 230, 0.5);
+            z-index: 10;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .scrollable-content {
+            margin-top: 70px; /* Adjust according to the header height */
+            overflow-y: auto;
+            height: calc(100vh - 70px); /* Adjust according to the header height */
+        }
+        .heading-box {
+            background: linear-gradient(45deg, #4CAF50, #FFC107);
+            padding: 10px;
+            border-radius: 5px;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .list-group-item {
+            background-color: #f2f2f2;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 18px; /* Increase font size here */
+        }
+        .list-group-item span {
+            font-weight: bold;
+            color: #333333;
+        }
+        .card-img-top {
+            height: 350px;
+            object-fit: cover;
+            border-radius: 5px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card-img-top:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .card-text span {
+            color: #FF0000;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .crop-description {
+            background-color: #FFFD74;
+            color: #721c24;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .crop-detail {
+            margin-bottom: 10px;
+        }
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+        .weather-card {
+            background-color: #ffffff;
+            border-radius: 5px;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .weather-card h2 {
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .weather-card p {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="heading-box mb-3">
+                        <h3 class="fw-bold" style="font-size: 24px;"><i class="fas fa-cogs icon"></i>Input Data<i class="fas fa-cogs icon"></i></h3>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="heading-box mb-3">
+                        <h3 class="fw-bold" style="font-size: 24px;"><i class="fas fa-seedling icon"></i>Recommended Crop<i class="fas fa-seedling icon"></i></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scrollable-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item"><b>Nitrogen:</b> <span>{{ input_values['Nitrogen'] }}</span></li>
+                        <li class="list-group-item"><b>Phosphorus:</b> <span>{{ input_values['Phosphorus'] }}</span></li>
+                        <li class="list-group-item"><b>Potassium:</b> <span>{{ input_values['Potassium'] }}</span></li>
+                        <li class="list-group-item"><b>Temperature:</b> <span>{{ input_values['Temperature'] }} °C</span></li>
+                        <li class="list-group-item"><b>Humidity:</b> <span>{{ input_values['Humidity'] }} %</span></li>
+                        <li class="list-group-item"><b>pH:</b> <span>{{ input_values['pH'] }}</span></li>
+                        <li class="list-group-item"><b>Rainfall:</b> <span>{{ input_values['Rainfall'] }} mm</span></li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <img src="{{ url_for('static', filename=result + '.jpg') }}" class="card-img-top" alt="{{ result }}">
+                        <div class="card-body">
+                            <h5 class="card-title fw-bold" style="font-size: 24px;">{{ result }}</h5>
+                            <div class="crop-description">
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <p class="card-text crop-detail"><span>Water Quantity:</span> {{ crop_detail['Water Quantity'] }}</p>
+                                        <p class="card-text crop-detail"><span>Soil Type:</span> {{ crop_detail['Soil Type'] }}</p>
+                                        <p class="card-text crop-detail"><span>Season:</span> {{ crop_detail['Season'] }}</p>
+                                        <p class="card-text crop-detail"><span>Time Period:</span> {{ crop_detail['Time Period'] }}</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <img src="/static/farmer.jpg" alt="Image" class="img-fluid">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% if weather_data %}
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="weather-card">
+                        <h2>Weather Forecast</h2>
+                        <p><span>Date:</span> {{ weather_data.date }}</p>
+                        <p><span>Temperature:</span> {{ weather_data.temperature }} °C</p>
+                        <p><span>Humidity:</span> {{ weather_data.humidity }} %</p>
+                        <p><span>Wind Speed:</span> {{ weather_data.wind_speed }} m/s</p>
+                        <p><span>Description:</span> {{ weather_data.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% if soil_data %}
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <h2 class="text-center">Soil Data</h2>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Parameter</th>
+                                <th>Value</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Surface Temperature (t0)</td>
+                                <td>{{ soil_data['t0'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Soil Moisture</td>
+                                <td>{{ soil_data['moisture'] }}</td>
+                            </tr>
+                            <tr>
+                                <td>Temperature at 10cm (t10)</td>
+                                <td>{{ soil_data['t10'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+</body>
+</html>

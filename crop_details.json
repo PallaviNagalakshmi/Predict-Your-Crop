@@ -1,0 +1,134 @@
+{
+    "rice": {
+        "Water Quantity": "2,500 to 3,000 millimeters",
+        "Soil Type": "Clayey soil or loamy soil with good water retention",
+        "Season": "Wet season or monsoon season",
+        "Time Period": "3 to 6 months"
+    },
+    "maize": {
+        "Water Quantity": "450 to 600 millimeters",
+        "Soil Type": "Well-drained loamy soil",
+        "Season": "Spring and summer",
+        "Time Period": "2 to 4 months"
+    },
+    "jute": {
+        "Water Quantity": "1,500 to 2,000 millimeters",
+        "Soil Type": "Alluvial soil or loamy soil with good drainage",
+        "Season": "Monsoon season",
+        "Time Period": "4 to 5 months"
+    },
+    "cotton": {
+        "Water Quantity": "500 to 800 millimeters",
+        "Soil Type": "Well-drained loamy soil with good organic matter",
+        "Season": "Spring and summer",
+        "Time Period": "5 to 6 months"
+    },
+    "coconut": {
+        "Water Quantity": "1,200 to 2,000 millimeters",
+        "Soil Type": "Sandy soil or loamy soil with good drainage",
+        "Season": "Warm seasons throughout the year",
+        "Time Period": "6 to 12 months"
+    },
+    "papaya": {
+        "Water Quantity": "1,000 to 1,500 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil with good organic matter",
+        "Season": "Spring and summer",
+        "Time Period": "6 to 9 months"
+    },
+    "orange": {
+        "Water Quantity": "600 to 1,000 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil with good organic matter",
+        "Season": "Spring and summer",
+        "Time Period": "6 to 12 months"
+    },
+    "apple": {
+        "Water Quantity": "500 to 800 millimeters",
+        "Soil Type": "Well-drained loamy soil with good organic matter",
+        "Season": "Spring and summer",
+        "Time Period": "4 to 8 months"
+    },
+    "muskmelon": {
+        "Water Quantity": "400 to 600 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil with good organic matter",
+        "Season": "Summer",
+        "Time Period": "2 to 3 months"
+    },
+    "watermelon": {
+        "Water Quantity": "500 to 700 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil with good organic matter",
+        "Season": "Summer",
+        "Time Period": "2 to 3 months"
+    },
+    "grapes": {
+        "Water Quantity": "500 to 800 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil with good organic matter",
+        "Season": "Spring and summer",
+        "Time Period": "3 to 5 months"
+    },
+    "mango": {
+        "Water Quantity": "600 to 1,200 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil",
+        "Season": "Spring and summer",
+        "Time Period": "4 to 6 months"
+    },
+    "banana": {
+        "Water Quantity": "1,000 to 1,500 millimeters",
+        "Soil Type": "Well-drained loamy soil with good organic matter",
+        "Season": "Warm seasons throughout the year",
+        "Time Period": "9 to 12 months"
+    },
+    "pomegranate": {
+        "Water Quantity": "500 to 800 millimeters",
+        "Soil Type": "Well-drained loamy soil with good organic content",
+        "Season": "Spring and summer",
+        "Time Period": "5 to 8 months"
+    },
+    "lentil": {
+        "Water Quantity": "300 to 400 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil",
+        "Season": "Winter",
+        "Time Period": "3 to 4 months"
+    },
+    "blackgram": {
+        "Water Quantity": "400 to 500 millimeters",
+        "Soil Type": "Well-drained loamy soil",
+        "Season": "Spring and summer",
+        "Time Period": "2 to 3 months"
+    },
+    "mungbean": {
+        "Water Quantity": "400 to 600 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil",
+        "Season": "Spring and summer",
+        "Time Period": "2 to 3 months"
+    },
+    "mothbeans": {
+        "Water Quantity": "400 to 500 millimeters",
+        "Soil Type": "Sandy loam or loamy soil",
+        "Season": "Summer",
+        "Time Period": "2 to 3 months"
+    },
+    "pigeonpeas": {
+        "Water Quantity": "600 to 800 millimeters",
+        "Soil Type": "Sandy loam or loamy soil with good drainage",
+        "Season": "Spring and summer",
+        "Time Period": "4 to 6 months"
+    },
+    "kidneybeans": {
+        "Water Quantity": "400 to 500 millimeters",
+        "Soil Type": "Well-drained loamy soil",
+        "Season": "Spring and summer",
+        "Time Period": "2 to 3 months"
+    },
+    "chickpea": {
+        "Water Quantity": "350 to 450 millimeters",
+        "Soil Type": "Well-drained sandy loam or loamy soil",
+        "Season": "Winter",
+        "Time Period": "3 to 4 months"
+    },
+    "coffee": {
+        "Water Quantity": "1,500 to 2,500 millimeters",
+        "Soil Type": "Well-drained loamy soil with good organic matter",
+        "Season": "Generally warm seasons, depending on the region",
+        "Time Period": "2 to 4 years (from planting to full production)"
+    }
+}

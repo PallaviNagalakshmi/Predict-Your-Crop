@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Predict Your Crop Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        body {
+            overflow: hidden;
+            background-image: url("/static/background.jpg");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #4CAF40;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 100vh;
+        }
+
+        .navbar {
+            background-color: green;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar-brand {
+            color: white;
+            margin-left: 500px;
+            font-family: "Times";
+            font-weight: bold;
+            font-size: 40px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 15px;
+            padding: 20px;
+            color: white;
+            max-width: 900px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: rgb(0, 0, 0);
+            text-align: center;
+        }
+
+        .warning {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .card {
+            margin-left: 410px;
+            margin-top: 20px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            color: rgb(241, 239, 240);
+        }
+
+        input[type="number"] {
+            background-color: rgba(255, 255, 255, 0.5);
+            font-weight: bold;
+        }
+
+        label {
+            color: #FFFF00;
+            font-size: 20px;
+        }
+
+        button.btn-primary {
+            background-color: #ff6600;
+            border-color: #ff6600;
+        }
+
+        button.btn-primary:hover {
+            background-color: #cc5500;
+            border-color: #cc5500;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar">
+    <div class="container-fluid">
+        <span class="navbar-brand mb-0 h1">Predict Your Crop</span>
+    </div>
+</nav>
+<div class="container my-3 mt-5">
+    <h1>Crop Recommendation System</h1>
+    <form action="/predict" method="POST">
+        <div class="row">
+            <div class="col-md-4">
+                <label for="Nitrogen">Nitrogen</label>
+                <input type="number" id="Nitrogen" name="Nitrogen" placeholder="Enter Nitrogen" class="form-control" required step="0">
+            </div>
+            <div class="col-md-4">
+                <label for="Phosphorus">Phosphorus</label>
+                <input type="number" id="Phosphorus" name="Phosphorus" placeholder="Enter Phosphorus" class="form-control" required step="0">
+            </div>
+            <div class="col-md-4">
+                <label for="Potassium">Potassium</label>
+                <input type="number" id="Potassium" name="Potassium" placeholder="Enter Potassium" class="form-control" required step="0">
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <label for="pH">pH</label>
+                <input type="number" step="0.1" id="pH" name="pH" placeholder="Enter pH value" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="Rainfall">Rainfall</label>
+                <input type="number" step="0.1" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall in mm" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="Temperature">Temperature</label>
+                <input type="number" step="0.1" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" required>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <label for="Humidity">Humidity</label>
+                <input type="number" step="0.1" id="Humidity" name="Humidity" placeholder="Enter Humidity in %" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="Latitude">Latitude</label>
+                <input type="number" step="0.01" id="Latitude" name="Latitude" placeholder="Enter Latitude" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="Longitude">Longitude</label>
+                <input type="number" step="0.01" id="Longitude" name="Longitude" placeholder="Enter Longitude" class="form-control" required>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg">Get Recommendation</button>
+            </div>
+        </div>
+    </form>
+
+    {% if result %}
+    <div class="card bg-dark" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='crop.png') }}" style="width: 70px; height: 70px;" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Recommended Crop for Cultivation is:</h5>
+            <p class="card-text">{{ result }}</p>
+        </div>
+    </div>
+    {% endif %}
+
+    {% if weather_data %}
+    <div class="card bg-dark mt-5" style="width: 18rem;">
+        <img src="{{ url_for('static', filename='weather.png') }}" style="width: 70px; height: 70px;" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">Current Weather</h5>
+            <p class="card-text">Description: {{ weather_data.description }}</p>
+            <p class="card-text">Temperature: {{ weather_data.temperature }} &deg;C</p>
+            <p class="card-text">Humidity: {{ weather_data.humidity }} %</p>
+            <p class="card-text">Wind Speed: {{ weather_data.wind_speed }} m/s</p>
+            <p class="card-text">Date & Time: {{ weather_data.date_time }}</p>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+</body>
+</html>
