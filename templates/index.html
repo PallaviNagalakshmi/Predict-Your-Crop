@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -18,9 +18,9 @@
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
-            align-items: flex-end;
-            height: 100vh;
+            justify-content: center; /* Center horizontally */
+            align-items: flex-end; /* Align items to the bottom */
+            height: 100vh; /* Adjusts to full viewport height */
         }
 
         .navbar {
@@ -45,8 +45,8 @@
             border-radius: 15px;
             padding: 20px;
             color: white;
-            max-width: 900px;
-            margin-bottom: 20px;
+            max-width: 900px; /* Adjust the width as needed */
+            margin-bottom: 20px; /* Add margin to separate from the bottom */
         }
 
         h1 {
@@ -70,7 +70,7 @@
         }
 
         input[type="number"] {
-            background-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.5); /* Change the background color of number input fields */
             font-weight: bold;
         }
 
@@ -80,13 +80,13 @@
         }
 
         button.btn-primary {
-            background-color: #ff6600;
-            border-color: #ff6600;
+            background-color: #ff6600; /* Set the background color to your desired color */
+            border-color: #ff6600; /* Set the border color to match the background color */
         }
 
         button.btn-primary:hover {
-            background-color: #cc5500;
-            border-color: #cc5500;
+            background-color: #cc5500; /* Set the background color for hover state */
+            border-color: #cc5500; /* Set the border color for hover state */
         }
     </style>
 </head>
@@ -97,7 +97,7 @@
     </div>
 </nav>
 <div class="container my-3 mt-5">
-    <h1>Crop Recommendation System</h1>
+    <!-- Adding form -->
     <form action="/predict" method="POST">
         <div class="row">
             <div class="col-md-4">
@@ -115,30 +115,22 @@
         </div>
         <div class="row mt-4">
             <div class="col-md-4">
-                <label for="pH">pH</label>
-                <input type="number" step="0.1" id="pH" name="pH" placeholder="Enter pH value" class="form-control" required>
-            </div>
-            <div class="col-md-4">
-                <label for="Rainfall">Rainfall</label>
-                <input type="number" step="0.1" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall in mm" class="form-control" required>
-            </div>
-            <div class="col-md-4">
                 <label for="Temperature">Temperature</label>
-                <input type="number" step="0.1" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" required>
+                <input type="number" step="0.00001" id="Temperature" name="Temperature" placeholder="Enter Temperature in °C" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="Humidity">Humidity</label>
+                <input type="number" step="0.00001" id="Humidity" name="Humidity" placeholder="Enter Humidity in %" class="form-control" required>
+            </div>
+            <div class="col-md-4">
+                <label for="pH">pH</label>
+                <input type="number" step="0.0000001" id="pH" name="pH" placeholder="Enter pH value" class="form-control" required>
             </div>
         </div>
         <div class="row mt-4">
             <div class="col-md-4">
-                <label for="Humidity">Humidity</label>
-                <input type="number" step="0.1" id="Humidity" name="Humidity" placeholder="Enter Humidity in %" class="form-control" required>
-            </div>
-            <div class="col-md-4">
-                <label for="Latitude">Latitude</label>
-                <input type="number" step="0.01" id="Latitude" name="Latitude" placeholder="Enter Latitude" class="form-control" required>
-            </div>
-            <div class="col-md-4">
-                <label for="Longitude">Longitude</label>
-                <input type="number" step="0.01" id="Longitude" name="Longitude" placeholder="Enter Longitude" class="form-control" required>
+                <label for="Rainfall">Rainfall</label>
+                <input type="number" step="0.0001" id="Rainfall" name="Rainfall" placeholder="Enter Rainfall in mm" class="form-control" required>
             </div>
         </div>
         <div class="row mt-4">
@@ -154,20 +146,6 @@
         <div class="card-body">
             <h5 class="card-title">Recommended Crop for Cultivation is:</h5>
             <p class="card-text">{{ result }}</p>
-        </div>
-    </div>
-    {% endif %}
-
-    {% if weather_data %}
-    <div class="card bg-dark mt-5" style="width: 18rem;">
-        <img src="{{ url_for('static', filename='weather.png') }}" style="width: 70px; height: 70px;" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">Current Weather</h5>
-            <p class="card-text">Description: {{ weather_data.description }}</p>
-            <p class="card-text">Temperature: {{ weather_data.temperature }} &deg;C</p>
-            <p class="card-text">Humidity: {{ weather_data.humidity }} %</p>
-            <p class="card-text">Wind Speed: {{ weather_data.wind_speed }} m/s</p>
-            <p class="card-text">Date & Time: {{ weather_data.date_time }}</p>
         </div>
     </div>
     {% endif %}
