@@ -32,6 +32,7 @@
             top: 0;
             width: 100%;
             background-color: rgba(173, 216, 230, 0.5);
+
             z-index: 10;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
@@ -91,20 +92,6 @@
             max-width: 100%;
             height: auto;
         }
-        .weather-card {
-            background-color: #ffffff;
-            border-radius: 5px;
-            padding: 10px;
-            margin-top: 20px;
-        }
-        .weather-card h2 {
-            margin-bottom: 10px;
-            text-align: center;
-        }
-        .weather-card p {
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
     </style>
 </head>
 <body>
@@ -129,13 +116,13 @@
             <div class="row">
                 <div class="col-md-6">
                     <ul class="list-group">
-                        <li class="list-group-item"><b>Nitrogen:</b> <span>{{ input_values['Nitrogen'] }}</span></li>
-                        <li class="list-group-item"><b>Phosphorus:</b> <span>{{ input_values['Phosphorus'] }}</span></li>
-                        <li class="list-group-item"><b>Potassium:</b> <span>{{ input_values['Potassium'] }}</span></li>
-                        <li class="list-group-item"><b>Temperature:</b> <span>{{ input_values['Temperature'] }} °C</span></li>
-                        <li class="list-group-item"><b>Humidity:</b> <span>{{ input_values['Humidity'] }} %</span></li>
-                        <li class="list-group-item"><b>pH:</b> <span>{{ input_values['pH'] }}</span></li>
-                        <li class="list-group-item"><b>Rainfall:</b> <span>{{ input_values['Rainfall'] }} mm</span></li>
+                        <li class="list-group-item"><b>Nitrogen:</b> <span>{{ input_values.Nitrogen }}</span></li>
+                        <li class="list-group-item"><b>Phosphorus:</b> <span>{{ input_values.Phosphorus }}</span></li>
+                        <li class="list-group-item"><b>Potassium:</b> <span>{{ input_values.Potassium }}</span></li>
+                        <li class="list-group-item"><b>Temperature:</b> <span>{{ input_values.Temperature }} °C</span></li>
+                        <li class="list-group-item"><b>Humidity:</b> <span>{{ input_values.Humidity }} %</span></li>
+                        <li class="list-group-item"><b>pH:</b> <span>{{ input_values.pH }}</span></li>
+                        <li class="list-group-item"><b>Rainfall:</b> <span>{{ input_values.Rainfall }} mm</span></li>
                     </ul>
                 </div>
                 <div class="col-md-6">
@@ -160,49 +147,6 @@
                     </div>
                 </div>
             </div>
-            {% if weather_data %}
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <div class="weather-card">
-                        <h2>Weather Forecast</h2>
-                        <p><span>Date:</span> {{ weather_data.date }}</p>
-                        <p><span>Temperature:</span> {{ weather_data.temperature }} °C</p>
-                        <p><span>Humidity:</span> {{ weather_data.humidity }} %</p>
-                        <p><span>Wind Speed:</span> {{ weather_data.wind_speed }} m/s</p>
-                        <p><span>Description:</span> {{ weather_data.description }}</p>
-                    </div>
-                </div>
-            </div>
-            {% endif %}
-            {% if soil_data %}
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <h2 class="text-center">Soil Data</h2>
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Parameter</th>
-                                <th>Value</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Surface Temperature (t0)</td>
-                                <td>{{ soil_data['t0'] }}</td>
-                            </tr>
-                            <tr>
-                                <td>Soil Moisture</td>
-                                <td>{{ soil_data['moisture'] }}</td>
-                            </tr>
-                            <tr>
-                                <td>Temperature at 10cm (t10)</td>
-                                <td>{{ soil_data['t10'] }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            {% endif %}
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
